@@ -1,0 +1,149 @@
+R Programming !!!!
+
+Week 1 :
+
+1. Writing Code and setting working directory :
+
+	*	getwd() 							--> répertoire courant
+	*	dir()								--> liste des fichier dans le répertoire
+	*	ls()								--> liste des fonctions chargées
+	*	source("Fichier.R")					--> Charger un script R
+	*	read.csv("Fichier.csv")				--> Charger un fichier de données
+	
+2. R Console Input and Evaluation:	
+	
+	*	>x <- 1								--> Affectation de 1 à x
+	*	>print(x)							--> Affichage de la valeur de la variable x
+	*	>x									--> Affichage de la valeur de la variable x (Comme la fonction print())
+	*	>#Commentaire						--> Commentaire
+	*	>msg <- "Hello"						--> affectation de la cahine "Hello" à msg
+	*	>x <- 1:20							--> affectation de la séquence de 1 à 20 à x
+
+3. R Data Types: Objects and Attributes
+
+	* 5 classes d'objets :	
+							1. Character
+							2. Numeric (nombres réels)
+							3. Integer
+							4. Complex
+							5. Logical (True|False)
+	* un vecteur (vector) peut seulement contenir des objets de meme classes
+	* une liste (list) reprsenté comme un vecteur mais peut contenir des objets de classes différentes (C'est son utilité)
+	*	>vector()						--> Création d'un vecteur vide
+	* Numbers : les nombres dans R sont généralement considérés comme des réels, Si nous voulons un entier il faut suffixer par L 
+		Exemple : >x <- 1L			# 1L signifie explicitement un entier de valeur 1L
+	* Inf : est un nombre spécial qui signifie l'infinit: 1 / 0 donne Inf, 1 / Inf donne 0.
+	* NaN : représente une valeur indéfini (Not a Number): 0 / 0 donne NaN (Il peut aussi être considéré comme une valeur manquante)
+	* Attributes : un objet peut avoir des attributs (names, dimnames, dimensions, class, length ...) pour accéder aux attributs d'un objet : utiliser la fonction attributes()
+
+4. R Data Types: Vectors and Lists
+
+	*	>x <- c([objets de memes classes])	--> Création d'un vecteur en utilisant la fonctio c()
+	*	>x <- vector("numeric", length=10)	--> Création d'un vecteur en utilisant la fonction vector(), (ici on a affecté à x 10 fois 0)
+	*	>class(x)							--> Afficher la classe de l'objet
+	*	>as.numeric(x) | >as.logical(x) |  >as.character(x)						--> Convertion explicite
+	*	>x <- list([Objets pas de meme classe])
+
+5. R Data Types: Matrices
+
+	*	>m <- matrix(nrow = 2, ncol = 3)	--> Création d'une matrice vide de dimension 2,3
+	*	>dim(m)								--> Dimension de la matrice m
+	*	>attributes(m)						--> Donnera $dim 2 3
+	* Les matrices sont construite en colonne : >m(1:6,nrow=2,ncol=3) donnera 3 colonnes d'une valeurs respectives : 1 2, 3 4, 5 6.
+	* Une matrice peut être créée à partir d'un vecteur en lui ajoutant un attribut dim :
+			>m <- 1:10
+			>dim(m) <- c(2,5)
+			>m
+				1	3	5	7	9
+				2	4	6	8	10
+	* Une matrice peut être aussi créée par Column-Binding ou Row-Biding avec cbind() et rbind()
+			>x <- 1:3
+			>y <- 10:12
+			>cbind(x,y)
+				x	y
+				1	10
+				2	11
+				3	12
+			>rbind(x,y)
+				x	1	2	3
+				y	10	11	12
+
+6. R Data Types: Factors
+
+	* Les Facteurs sont utilisés pour représenter des données catégoricielles, ils peuvent êtres ordonnés ou désordonnés.
+	* Les Facteurs sont utils spécialement pour la modélisation avec les fonctions lm() et glm()
+	* Utiliser les Facteurs de Libellé est meilleur que l'utilisation avec des entiers
+	*	>x <- factor(c("yes","yes","no","yes","no"))
+		>x
+		yes yes no yes no
+		Levels: no yes	# Attribut de l'objet de classe Factor
+		>table(x)		# Retourne le nombre d'apparition de chaque élément du factor
+		x
+		no	yes
+		2	3
+		>unclass(x)
+		2	2	1	2	1
+		>attr(,"levels")
+		no	yes
+	* L'ordre des "Levels" peut être fixé comme ceci:
+		>x <- factor(c("yes","yes","no","yes","no"), levels = c("yes","no"))
+
+7. R Data Types: Missing Values
+
+	* Les valeurs manquantes sont notés par NA ou NaN
+	*	>is.na()
+	*	>is.nan()
+	* NaN est NA mais NA n'est pas NaN
+
+8. R Data Types: Data Frames
+
+	* Data Frames sont utilisés pour stocker des données tabulés
+	* Souvent créés par les fonction read.csv() ou read.table()
+	* Un Data Frame  peut être converti en matrice : data.matrix()
+	*> x <- data.frame(foo = 1:4, bar = c(T, T, F, F))
+	*> x
+		foo bar
+		1 1 TRUE
+		2 2 TRUE
+		3 3 FALSE
+		4 4 FALSE
+	*> nrow(x)
+	[1] 4
+	*> ncol(x)
+	[1] 2
+	
+9. R Data Types: The Names Attribute
+
+	*> x <- 1:3
+	*> names(x)
+	*NULL
+	*> names(x) <- c("foo", "bar", "norf")
+	*> x
+	*foo bar norf
+	*1 2 3
+	*> names(x)
+	*[1] "foo" "bar" "norf"
+	
+	*> m <- matrix(1:4, nrow = 2, ncol = 2)
+	*> dimnames(m) <- list(c("a", "b"), c("c", "d"))
+	*> m
+	*c d
+	*a 1 3
+	*b 2 4
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
